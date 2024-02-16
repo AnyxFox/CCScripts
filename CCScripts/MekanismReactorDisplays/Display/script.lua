@@ -2,11 +2,10 @@
 rednet.open("right")
 while true do
     term.clear()
-    term.setCursorPos(1,1)
-    print("Please specify ID")
-    local input = read("*")
-    if input == "test1" then
-        rednet.broadcast("Test Sent")
-        print("Message sent.")
+    id,message = rednet.receive()
+    if message == "rsr" and id == 4480 then
+        print("Detected Redstone Activation")
+        redstone.setOutput("back", true)
     end
+    print("Redstone Input Detected")
 end
